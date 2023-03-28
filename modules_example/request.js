@@ -11,3 +11,8 @@ function send(url,data){
 module.exports = { 
     send
 }
+
+
+
+//* export using ecma script 
+exports = { send}

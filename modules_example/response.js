@@ -9,3 +9,7 @@ function read(){
 module.exports = { 
     read
 }
+
+
+//* export using ecma script 
+exports = { read}
