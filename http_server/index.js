@@ -39,6 +39,7 @@ server.on("request", (req, res) => {
       console.log("Request: ", friend); //now the data is string. we need to convert that into object 🔽 and store that in our array -friends.
       friends.push(JSON.parse(friend));
     });
+    req.pipe(res);
   } else if (req.method === "GET" && items[1] === "friends") {
     // res.writeHead(200, {
     //   "Content-Type": "application/json",

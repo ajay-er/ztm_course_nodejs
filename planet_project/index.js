@@ -13,7 +13,7 @@ function isHabitablePlanet(planet) {
 }
 
 fs.createReadStream("kepler_data.csv")
-  //here we use parse to burffer to convert writable
+  //here we use parse to buffer to convert writable
   // ---> readable stream source to a writable stream destination.a stream that takes in data as suppose to giving u data;
   // kepler file is the source here,parse function is the destination for our pipe.
   .pipe(
