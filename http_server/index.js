@@ -33,7 +33,13 @@ server.on("request", (req, res) => {
   const items = req.url.split("/");
   // /friends/2 => ['','friends','2']
 
-  if (items[1] === "friends") {
+  if (req.method === "POST" && items[1] === "friends") {
+    req.on("data", (data) => {
+      const friend = data.toString(); //json format passing by browser is being received as buffer so, we need to convert that.
+      console.log("Request: ", friend); //now the data is string. we need to convert that into object 🔽 and store that in our array -friends.
+      friends.push(JSON.parse(friend));
+    });
+  } else if (req.method === "GET" && items[1] === "friends") {
     // res.writeHead(200, {
     //   "Content-Type": "application/json",
     // });
@@ -48,7 +54,7 @@ server.on("request", (req, res) => {
     } else {
       res.end(JSON.stringify(friends));
     }
-  } else if (items[1] === "messages") {
+  } else if (req.method === "GET" && items[1] === "messages") {
     //here we didn't set the status code,but its working because the default status code is 200.
     res.setHeader("Content-type", "text/html");
     res.write("<html>");
