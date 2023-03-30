@@ -1,7 +1,7 @@
 const express = require("express");
 
-const messagesController = require("./controllers/messages.controller");
-const friendsController = require("./controllers/friends.controller");
+const friendsRouter = require("./routes/friends.router");
+const messagesRouter = require("./routes/messages.router");
 
 const app = express();
 
@@ -11,17 +11,15 @@ app.use((req, res, next) => {
   const start = Date.now();
   next();
   const delta = Date.now() - start;
-  console.log(`${req.method} -- ${req.url} -- ${delta}ms`);
+  console.log(`${req.method} -- ${req.baseUrl}${req.url} -- ${delta}ms`);
 });
 
 app.use(express.json()); //express.json() parses the JSON data in the request body and adds it to the req.body object.automatically calls next
 
-app.post("/friends", friendsController.postFriend);
-app.get("/friends", friendsController.getFriends);
-app.get("/friends/:FriendId", friendsController.getFriend);
-
-app.get("/messages", messagesController.getMessages);
-app.post("/messages", messagesController.postMessage);
+//sometimes this middleware calls mounting the app object. routers allows us to do,we can mount a group of routes under a specific path.
+//by organising things in this way ..the friends router doesn't need to worry about the other routes in the application.its kind of like a self contained application of its own.
+app.use("/friends", friendsRouter);
+app.use("/messages", messagesRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}...`);
