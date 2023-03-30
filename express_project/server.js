@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   console.log(`${req.method} -- ${req.url} -- ${delta}ms`);
 });
 
-app.use(express.json());
+app.use(express.json());//express.json() parses the JSON data in the request body and adds it to the req.body object.automatically calls next 
 
 app.post("/friends", (req, res) => {
   if(!req.body.name){
