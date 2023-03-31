@@ -1,5 +1,8 @@
+const path = require("path");//this handles path on diffrent operation systems
+//  linux,mac ==> /folder/file.jpg    windows ==> \folder\files.jpg
+
 function getMessages(req, res) {
-  res.send("<ul><li><h1>Am genious</h1></ul></li>");
+  res.sendFile(path.join(__dirname, "..","images", "public", "photo.jpg"));
 }
 
 function postMessage(req, res) {
