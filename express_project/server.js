@@ -9,7 +9,7 @@ const app = express();
 app.set('view engine','hbs');
 app.set('views',path.join(__dirname,'views'))
 
-const PORT = 3001;
+const PORT = 3000;
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -23,7 +23,7 @@ app.use(express.json()); //express.json() parses the JSON data in the request bo
 
 //sometimes this middleware calls mounting the app object. routers allows us to do,we can mount a group of routes under a specific path.
 //by organising things in this way ..the friends router doesn't need to worry about the other routes in the application.its kind of like a self contained application of its own.
-app.use("/",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render('index',{
       title:'Ajay',
       caption:'Hei am genious',
