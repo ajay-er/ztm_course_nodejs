@@ -9,7 +9,7 @@ function httpAddNewLaunch(req, res) {
 
   if (
     !launch.rocket ||
-    !launch.destination ||
+    !launch.target ||
     !launch.launchDate ||
     !launch.mission
   ) {

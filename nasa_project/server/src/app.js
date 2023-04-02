@@ -13,7 +13,7 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
-app.use(morgan("tiny"));
+app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "build")));
