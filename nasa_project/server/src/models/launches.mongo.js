@@ -9,7 +9,6 @@ const launchesSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-
   mission: {
     type: String,
     required: true,
@@ -33,3 +32,6 @@ const launchesSchema = new mongoose.Schema({
     default: true,
   },
 });
+
+//connects launchesSchema with the "launches" collection
+module.exports = mongoose.model("Launch", launchesSchema); //first argument is a name of the collection and the second one is the schema
