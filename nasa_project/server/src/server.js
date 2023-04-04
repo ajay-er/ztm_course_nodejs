@@ -21,12 +21,13 @@ mongoose.connection.on("error", (err) => {
 });
 
 async function startServer() {
-  await loadPlanetsData();
   await mongoose.connect(MONGO_URL, {
     //if we dont specify these optional options we get some deprecations warnings in the console
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
+
+  await loadPlanetsData();
 
   server.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`);

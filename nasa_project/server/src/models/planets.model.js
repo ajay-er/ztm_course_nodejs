@@ -26,7 +26,7 @@ function loadPlanetsData() {
       )
       .on("data", async (data) => {
         if (isHabitablePlanet(data)) {
-          //TODO: Replace below create with --  update + insert = upsert
+          //TODO: Replace below create with insert + update = upsert
           savePlanet(data);
         }
       })
@@ -47,22 +47,21 @@ async function getAllPlanets() {
 }
 
 async function savePlanet(planet) {
- try{
-
-   await planets.updateOne(
-     {
-       keplerName: data.kepler_name,
-     },
-     {
-       keplerName: data.kepler_name,
-     },
-     {
-       upsert: true,
-     }
-   );
- }catch(err){
-    console.error(`Could not save planet ${err}`);
- }
+  try {
+    return await planets.updateOne(
+      {
+        keplerName: planet.kepler_name,
+      },
+      {
+        keplerName: planet.kepler_name,
+      },
+      {
+        upsert: true,
+      }
+    );
+  } catch (err) {
+    console.error(`could not save planet ${err}`);
+  }
 }
 
 module.exports = {
